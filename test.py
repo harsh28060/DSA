@@ -1,18 +1,21 @@
-def topKFrequent(nums,k):
-    count = {}
-    freq = [[] for i in range(len(nums) + 1)]
-    for i in nums:
-        count[i] = 1 + count.get(i,0)
-    for n , c in count.items():
-        freq[c].append(n)
-    res = []
-    for i in range(len(freq)-1,0,-1):
-        for n in freq[i]:
-            res.append(n)
-            if len(res) == k:
-                return res
+def encode(strs):
+    res = ""
+    for s in strs:
+        res += str(len(s)) + "#" + s
+    return res
 
-nums = [1,1,1,2,2,3]
-k = 2
+def decode(strs):
+    res,i=[],0
+    while i < len(strs):
+        j = i
+        while strs[j] != "#":
+            j += 1
+        lengh = int(strs[i:j])
+        res.append(strs[j+1:j+1+lengh])
+        i = j+1+lengh
+    return res
 
-print(topKFrequent(nums, k))
+
+strs = ["Hello","World"]
+print(encode(strs))
+print(decode(encode(strs)))
