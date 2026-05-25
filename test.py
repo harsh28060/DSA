@@ -1,13 +1,16 @@
-nums = [1,2,3,4]
+class Solution:
+    def reverseString(self, s):
+        left = 0
+        right = len(s) - 1
 
-res = [1] * len(nums)
-prefix = 1
-for i in range(len(nums)):
-    res[i] = prefix
-    prefix *= nums[i]
-print(res)
-postfix = 1
-for i in range(len(nums)-1,-1,-1):
-    res[i] *= postfix
-    postfix *= nums[i]
-print(res)
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+
+            left += 1
+            right -= 1
+        print(s)
+
+obj = Solution()
+s = ["h","e","l","l","o"]
+print(len(s))
+obj.reverseString(s)
